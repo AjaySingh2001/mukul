@@ -23,8 +23,11 @@ class Account:
     def create_account(self, accounts :list):
         with open(self.FILE_PATH, 'w') as file:
             for acc in accounts:
+                acc_no = acc['acc_no'].strip()
                 acc_name = acc['holder_name'].strip()
-                line = (f"{acc['acc_no']}, {acc_name}, {acc['balance']}, {acc['active']}\n")
+                balance = acc['balance']
+                active = acc['active']
+                line = (f"{acc_no}, {acc_name}, {balance}, {active}\n")
                 file.write(line)
         return
         
