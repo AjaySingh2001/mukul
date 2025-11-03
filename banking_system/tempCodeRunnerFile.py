@@ -1,0 +1,1 @@
+print(f"Manager has successfully added {amount} Rupees in account {acc_no}. ")
