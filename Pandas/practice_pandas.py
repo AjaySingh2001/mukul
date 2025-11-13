@@ -34,12 +34,26 @@ arr = [1,2,3]
 # print(df.to_string())
 
 
-df = pd.read_csv('/home/developer/Mukul/Pandas/data.csv')
+# df = pd.read_csv('/home/developer/Mukul/Pandas/data.csv')
 
 # mn = df["Calories"].mean()
 # mdn = df["Calories"].median()
 # md = df["Calories"].mode()[0]
 # print(mn, mdn, md)
 # df.fillna({"Calories":10000}, inplace=True)
-df['Date'] = pd.to_datetime(df['Date'], format='mixed')
-print(df.to_string())
+# df['Date'] = pd.to_datetime(df['Date'], format='mixed')
+# print(df.to_string())
+
+student_data1 = pd.DataFrame({
+        'student_id': ['S1', 'S2', 'S3', 'S4', 'S5'],
+         'name': ['Danniella Fenton', 'Ryder Storey', 'Bryce Jensen', 'Ed Bernal', 'Kwame Morin'], 
+        'marks': [200, 210, 190, 222, 199]})
+
+s6 = pd.Series(['S6', 'Scarlette Fisher', 205], index=['student_id', 'name', 'marks'])
+print("Original DataFrames:")
+print(student_data1)
+print("\nNew Row(s)")
+print(s6)
+combined_data = student_data1.append(s6, ignore_index = True)
+print("\nCombined Data:")
+print(combined_data)

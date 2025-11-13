@@ -405,3 +405,31 @@ The examples in this page uses a CSV file called: 'data.csv'.
 # Show the relationship between the columns:
 df.corr()
 ```
+
+### Joins in Pandas
+Joins allow you to combine two DataFrames based on a common column (key).
+In pandas, joins are performed using: 
+```python
+pd.merge()
+# or
+df1.merge(df2)
+```
+### Types of Joins in Pandas (Same as SQL)
+| Join Type                  | Meaning                                    | Keeps rows from |
+| -------------------------- | ------------------------------------------ | --------------- |
+| **INNER JOIN**             | Only matching rows                         | Both tables     |
+| **LEFT JOIN**              | All rows from left, matched from right     | Left            |
+| **RIGHT JOIN**             | All rows from right, matched from left     | Right           |
+| **OUTER JOIN / FULL JOIN** | All rows from both, unmatched rows get NaN | Both            |
+
+* INNER JOIN (Common records only)
+  * pd.merge(df1.df2, on='id', how='inner')
+
+* LEFT JOIN (All rows from left DataFrame)
+  * pd.merge(df1.df2, on='id', how='left')
+
+* RIGHT JOIN (All rows from right DataFrame)
+  * pd.merge(df1.df2, on='id', how='right')
+
+* FULL OUTER JOIN (All rows, unmatched as NaN)
+  * pd.merge(df1.df2, on='id', how='outer')
