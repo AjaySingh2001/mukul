@@ -333,3 +333,66 @@ w = Window.orderBy("salary")
 df = df.withColumn("prev_salary", lag("salary", 1).over(w))
 df = df.withColumn("next_salary", lead("salary", 1).over(w))
 ```
+
+
+
+## 1. Create SparkSession (Always First Step)
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("Data Import Example") \
+    .getOrCreate()
+```
+
+## 2. Read/Import Data Files in PySpark
+
+PySpark can read many formats: CSV, JSON, Parquet, Text, ORC, Excel (via third-party), Avro, etc.
+
+### 2.1 Read CSV File
+```python
+df = spark.read.csv("path/to/file.csv", header=True, inferSchema=True)
+df.show()
+df.printSchema()
+```
+
+Options:
+
+>header=True → use first row as column names
+
+>inferSchema=True → automatically detect data types
+
+### 2.2 Read JSON File
+```python
+df = spark.read.json("path/to/file.json")
+df.show()
+df.printSchema()
+```
+
+### 2.2 Read JSON File
+```python
+df = spark.read.json("path/to/file.json")
+df.show()
+df.printSchema()
+```
+
+### 2.3 Read Parquet File
+
+Parquet is the fastest format for Spark.
+```python
+df = spark.read.parquet("path/to/file.parquet")
+df.show()
+```
+### 2.4 Read Text File
+```python
+rdd = spark.sparkContext.textFile("path/to/file.txt")
+```
+
+## 4. Create a Data File using RDD
+```python
+data = ["hello", "this is sample data", "pyspark practice"]
+
+rdd = spark.sparkContext.parallelize(data)
+
+rdd.saveAsTextFile("output/sample.txt")
+```
